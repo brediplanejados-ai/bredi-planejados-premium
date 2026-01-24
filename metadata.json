@@ -1,0 +1,7 @@
+{
+  "name": "Bredi Planejados Premium",
+  "description": "Uma plataforma de luxo para móveis planejados sob medida, com visualização 3D, galeria de projetos e processos detalhados de fabricação.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
