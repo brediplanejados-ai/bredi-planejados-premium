@@ -20,10 +20,10 @@ const Logo: React.FC<{ light?: boolean, centered?: boolean }> = ({ light = false
 );
 
 const App: React.FC = () => {
-    const [scrolled, setScrolled] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [showNotification, setShowNotification] = useState(false);
     const [notificationIndex, setNotificationIndex] = useState(0);
+    const [showWelcome, setShowWelcome] = useState(false);
+    const [welcomeVisible, setWelcomeVisible] = useState(false);
 
     const notifications = [
         { name: 'Juliana', detail: 'acabou de garantir sua cozinha dos sonhos.' },
@@ -48,6 +48,61 @@ const App: React.FC = () => {
             setScrolled(window.scrollY > 50);
         };
         window.addEventListener('scroll', handleScroll);
+
+        // Lógica de Boas-Vindas (Confetti + Som + Mensagem) - 1 vez por semana
+        const handleWelcome = () => {
+            const LAST_WELCOME_KEY = 'bredi_last_welcome';
+            const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+            const lastWelcome = localStorage.getItem(LAST_WELCOME_KEY);
+            const now = Date.now();
+
+            if (!lastWelcome || (now - parseInt(lastWelcome)) > ONE_WEEK_MS) {
+                // Dispara o efeito após um pequeno delay para carregar a página
+                setTimeout(() => {
+                    setShowWelcome(true);
+                    setWelcomeVisible(true);
+                    localStorage.setItem(LAST_WELCOME_KEY, now.toString());
+
+                    // Som de explosão/festa
+                    try {
+                        const explosionSfx = new Audio('https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3'); // Som de festa/comemoração
+                        explosionSfx.volume = 0.6;
+                        explosionSfx.play().catch(() => console.log('Interação necessária para tocar som de boas-vindas.'));
+                    } catch (e) {
+                        console.log('Erro ao tocar som de boas-vindas:', e);
+                    }
+
+                    // Confetes (requer canvas-confetti no index.html)
+                    const duration = 5 * 1000;
+                    const animationEnd = Date.now() + duration;
+                    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 200 };
+
+                    const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
+
+                    const interval: any = setInterval(function () {
+                        const timeLeft = animationEnd - Date.now();
+
+                        if (timeLeft <= 0) {
+                            return clearInterval(interval);
+                        }
+
+                        const particleCount = 50 * (timeLeft / duration);
+                        // @ts-ignore
+                        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+                        // @ts-ignore
+                        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+                    }, 250);
+
+                    // Soma a mensagem após 6 segundos
+                    setTimeout(() => {
+                        setWelcomeVisible(false);
+                        setTimeout(() => setShowWelcome(false), 1000);
+                    }, 6000);
+                }, 1000);
+            }
+        };
+
+        handleWelcome();
 
         // Social Proof - Mostra a cada 15 segundos, dura 5 segundos
         const interval = setInterval(() => {
@@ -528,6 +583,28 @@ const App: React.FC = () => {
                     </a>
                 ))}
             </nav>
+
+            {/* Welcome Message Overlay */}
+            {showWelcome && (
+                <div className={`fixed inset-0 z-[200] flex items-center justify-center transition-all duration-1000 ${welcomeVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'}`}>
+                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+                    <div className="relative bg-black/80 border border-primary/30 p-10 md:p-20 rounded-[40px] shadow-[0_0_100px_rgba(197,160,89,0.2)] text-center max-w-[90vw]">
+                        <div className="mb-8 flex justify-center">
+                            <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center animate-bounce">
+                                <span className="material-symbols-outlined text-primary text-5xl">celebration</span>
+                            </div>
+                        </div>
+                        <h2 className="text-4xl md:text-7xl font-black mb-6 gold-gradient-text tracking-tighter">
+                            Seja Bem-vindo!
+                        </h2>
+                        <div className="h-1 w-24 bg-primary mx-auto mb-8"></div>
+                        <p className="text-xl md:text-3xl text-slate-200 font-light italic font-serif">
+                            É uma honra ter você na <span className="text-primary font-bold not-italic">Bredi Planejados</span>
+                        </p>
+                        <p className="mt-8 text-slate-500 text-xs md:text-sm font-black uppercase tracking-[0.4em]">Design de Luxo • Exclusividade • Tradição</p>
+                    </div>
+                </div>
+            )}
 
             <style>{`
                 @keyframes pulse-custom {
