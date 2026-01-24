@@ -250,7 +250,7 @@ const App: React.FC = () => {
                         <div className="grid lg:grid-cols-2 gap-20 items-center">
                             <div className="order-2 lg:order-1">
                                 <span className="text-primary text-[10px] font-black uppercase tracking-[0.5em] block mb-6">Liderança & Visão</span>
-                                <h2 className="text-4xl md:text-6xl font-black mb-10 leading-tight">Quem está por trás da <span className="gold-gradient-text">bRedi?</span></h2>
+                                <h2 className="text-4xl md:text-6xl font-black mb-10 leading-tight">Quem está por trás do <span className="gold-gradient-text uppercase">Bredi</span></h2>
 
                                 <div className="space-y-8">
                                     <p className="text-slate-400 text-xl leading-relaxed font-light">
