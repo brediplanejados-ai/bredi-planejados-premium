@@ -20,6 +20,8 @@ const Logo: React.FC<{ light?: boolean, centered?: boolean }> = ({ light = false
 );
 
 const App: React.FC = () => {
+    const [scrolled, setScrolled] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [showNotification, setShowNotification] = useState(false);
     const [notificationIndex, setNotificationIndex] = useState(0);
     const [showWelcome, setShowWelcome] = useState(false);
