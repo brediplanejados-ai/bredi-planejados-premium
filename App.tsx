@@ -418,16 +418,33 @@ const App: React.FC = () => {
                 </div>
             </footer>
 
-            {/* WhatsApp FAB */}
-            <a
-                href="https://wa.me/5515998148402"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="fixed bottom-24 right-6 md:bottom-10 md:right-10 z-[110] w-20 h-20 bg-[#25D366] text-white rounded-3xl shadow-[0_20px_40px_rgba(37,211,102,0.3)] flex items-center justify-center hover:scale-110 active:scale-95 transition-all group"
-            >
-                <span className="material-symbols-outlined text-4xl fill-1 group-hover:rotate-12 transition-transform">chat</span>
-                <span className="absolute -top-2 -right-2 bg-red-500 w-6 h-6 rounded-full flex items-center justify-center text-[10px] border-4 border-black font-bold">1</span>
-            </a>
+            {/* WhatsApp FAB & Social Proof */}
+            <div className="fixed bottom-24 right-6 md:bottom-10 md:right-10 z-[110] flex flex-col items-end gap-4">
+                {/* Sale Notification */}
+                <div className={`bg-white text-black p-4 rounded-2xl shadow-2xl border border-primary/20 flex items-center gap-4 transition-all duration-700 transform max-w-[280px] ${showNotification ? 'translate-x-0 opacity-100' : 'translate-x-[120%] opacity-0'}`}>
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                        <span className="material-symbols-outlined text-primary text-xl">shopping_bag</span>
+                    </div>
+                    <div className="flex flex-col">
+                        <span className="text-[10px] font-black uppercase tracking-widest text-primary">Novo Cliente bRedi</span>
+                        <p className="text-xs font-semibold leading-snug">
+                            <span className="text-black font-black uppercase">{notifications[notificationIndex].name}</span> {notifications[notificationIndex].detail}
+                        </p>
+                    </div>
+                </div>
+
+                <a
+                    href="https://wa.me/5515998148402"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-20 h-20 bg-transparent flex items-center justify-center hover:scale-110 active:scale-95 transition-all group relative drop-shadow-[0_10px_20px_rgba(37,211,102,0.4)]"
+                >
+                    <svg viewBox="0 0 24 24" className="w-full h-full fill-[#25D366] animate-[pulse-custom_3s_infinite]">
+                        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.187-2.59-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.171.812-.335.039-.633.223-1.61-.166-1.164-.462-2.316-1.284-3.196-2.439-.395-.519-.588-1.027-.589-1.513 0-.486.085-.843.435-1.189l.233-.234c.106-.106.212-.132.319-.132.106 0 .213.04.305.228l.519 1.213c.091.213.064.4-.029.569l-.265.48c-.126.187-.132.266-.032.441.1.175.441.728.948 1.179.626.558 1.155.733 1.341.833.186.1.286.082.404-.054l.372-.498c.123-.164.218-.184.383-.122l1.246.612c.165.081.27.121.313.191.042.069.042.518-.103.923zM12 0C5.373 0 0 5.373 0 12c0 2.112.546 4.095 1.503 5.82L0 24l6.34-1.666C7.994 23.336 9.932 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22.091c-1.894 0-3.662-.533-5.163-1.455l-3.708.974.989-3.61c-1.037-1.56-1.645-3.418-1.645-5.42 0-5.305 4.316-9.62 9.62-9.62s9.621 4.315 9.621 9.62-4.316 9.611-9.62 9.611z" />
+                    </svg>
+                    <span className="absolute -top-1 -right-1 bg-red-500 w-6 h-6 rounded-full flex items-center justify-center text-[10px] border-2 border-black font-bold text-white shadow-lg animate-bounce">1</span>
+                </a>
+            </div>
 
             {/* Mobile Fullscreen Menu */}
             <div className={`fixed inset-0 z-[115] bg-black/98 backdrop-blur-2xl transition-all duration-500 ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
@@ -466,6 +483,11 @@ const App: React.FC = () => {
             </nav>
 
             <style>{`
+                @keyframes pulse-custom {
+                    0% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(37,211,102,0.4)); }
+                    50% { transform: scale(1.05); filter: drop-shadow(0 0 20px rgba(37,211,102,0.6)); }
+                    100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(37,211,102,0.4)); }
+                }
                 @keyframes ken-burns {
                     from { transform: scale(1); }
                     to { transform: scale(1.15); }
