@@ -12,7 +12,7 @@ import {
 
 const Logo: React.FC<{ light?: boolean, centered?: boolean }> = ({ light = false, centered = false }) => (
     <a href="#inicio" className={`flex flex-col ${centered ? 'items-center' : 'items-start'} leading-tight gap-1 hover:opacity-80 transition-opacity`}>
-        <span className="text-3xl font-bold tracking-[0.15em] gold-gradient-text">bRedi</span>
+        <span className="text-3xl font-bold tracking-[0.15em] gold-gradient-text uppercase">Bredi</span>
         <div className="w-full h-[1px] bg-primary opacity-60"></div>
         <span className={`text-xl font-serif ${light ? 'text-white' : 'text-slate-300'} italic tracking-wide`}>Planejados</span>
         <span className="text-[8px] font-medium tracking-[0.3em] text-white/50 uppercase">Móveis Sob Medida</span>
@@ -409,7 +409,7 @@ const App: React.FC = () => {
                     </a>
 
                     <div className="flex flex-col md:flex-row items-center justify-between w-full gap-6 order-2 md:order-1">
-                        <span>© 2024 bRedi Planejados - DESIGN PREMIUM</span>
+                        <span>© 2024 BREDI PLANEJADOS - DESIGN PREMIUM</span>
                         <div className="flex gap-8">
                             <a href="#" className="hover:text-white transition-colors">Privacidade</a>
                             <a href="#" className="hover:text-white transition-colors">Termos</a>
