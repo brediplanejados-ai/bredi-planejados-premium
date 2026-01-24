@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     PROJECTS,
     TESTIMONIALS,
@@ -33,6 +33,16 @@ const App: React.FC = () => {
         { name: 'Beatriz', detail: 'fechou o projeto completo do seu novo lar.' }
     ];
 
+    const playWhatsAppSound = () => {
+        try {
+            const audio = new Audio('/whatsapp-sound.mp3');
+            audio.volume = 1.0;
+            audio.play().catch(err => console.log('Bloqueio de som (precisa clicar na página):', err.message));
+        } catch (e) {
+            console.log('Erro ao tocar som do WhatsApp:', e);
+        }
+    };
+
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 50);
@@ -41,8 +51,18 @@ const App: React.FC = () => {
 
         // Social Proof - Mostra a cada 15 segundos, dura 5 segundos
         const interval = setInterval(() => {
+            console.log('--- EVENTO PROVA SOCIAL ---');
             setNotificationIndex(prev => (prev + 1) % notifications.length);
             setShowNotification(true);
+
+            try {
+                const sfx = new Audio('social-proof-sound.mp3');
+                sfx.volume = 1.0;
+                sfx.play().catch(err => console.log('Bloqueio de som (precisa clicar na página):', err.message));
+            } catch (e) {
+                console.log('Erro ao criar objeto de áudio:', e);
+            }
+
             setTimeout(() => setShowNotification(false), 5000);
         }, 15000);
 
@@ -70,6 +90,7 @@ const App: React.FC = () => {
                             href="https://wa.me/5515998148402"
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={playWhatsAppSound}
                             className="hidden md:flex bg-primary/10 text-primary border border-primary/40 px-6 py-3 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-primary hover:text-black transition-all shadow-[0_0_20px_rgba(197,160,89,0.1)]"
                         >
                             Falar com Projetista
@@ -117,6 +138,7 @@ const App: React.FC = () => {
                                     href="https://wa.me/5515998148402"
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    onClick={playWhatsAppSound}
                                     className="h-16 md:h-20 px-8 md:px-12 bg-primary text-black rounded-xl font-black text-xs md:text-sm tracking-[0.2em] uppercase shadow-[0_20px_50px_rgba(197,160,89,0.3)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 md:gap-4"
                                 >
                                     Solicitar Projeto 3D Grátis
@@ -291,6 +313,7 @@ const App: React.FC = () => {
                                             href="https://wa.me/5515998148402"
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            onClick={playWhatsAppSound}
                                             className="h-14 px-8 bg-primary/10 text-primary border border-primary/20 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-primary hover:text-black transition-all flex items-center gap-3"
                                         >
                                             Falar com o Diretor
@@ -331,6 +354,7 @@ const App: React.FC = () => {
                             href="https://wa.me/5515998148402"
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={playWhatsAppSound}
                             className="h-20 md:h-24 px-10 md:px-16 bg-primary text-black rounded-2xl font-black text-base md:text-lg tracking-[0.2em] uppercase shadow-[0_30px_60px_rgba(197,160,89,0.4)] hover:translate-y-[-10px] active:translate-y-0 transition-all flex items-center justify-center gap-4 md:gap-6 group"
                         >
                             Agendar Consultoria Exclusiva
@@ -458,6 +482,7 @@ const App: React.FC = () => {
                     href="https://wa.me/5515998148402"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={playWhatsAppSound}
                     className="w-20 h-20 bg-transparent flex items-center justify-center hover:scale-110 active:scale-95 transition-all group relative drop-shadow-[0_10px_20px_rgba(37,211,102,0.4)]"
                 >
                     <svg viewBox="0 0 24 24" className="w-full h-full fill-[#25D366] animate-[pulse-custom_3s_infinite]">
@@ -481,6 +506,7 @@ const App: React.FC = () => {
                         href="https://wa.me/5515998148402"
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={playWhatsAppSound}
                         className="bg-primary text-black px-10 py-5 rounded-xl font-black uppercase tracking-widest shadow-2xl"
                     >
                         Falar com Projetista
