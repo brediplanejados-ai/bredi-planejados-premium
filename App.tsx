@@ -27,6 +27,12 @@ const App: React.FC = () => {
     const [showWelcome, setShowWelcome] = useState(false);
     const [welcomeVisible, setWelcomeVisible] = useState(false);
 
+    // Estados do Player de Música
+    const [isMuted, setIsMuted] = useState(true);
+    const [volume, setVolume] = useState(0.5);
+    const [showVolumeSlider, setShowVolumeSlider] = useState(false);
+    const backgroundMusicRef = useRef<HTMLAudioElement | null>(null);
+
     const notifications = [
         { name: 'Juliana', detail: 'acabou de garantir sua cozinha dos sonhos.' },
         { name: 'Marcos', detail: 'agendou uma consultoria para seu closet premium.' },
@@ -123,11 +129,38 @@ const App: React.FC = () => {
             setTimeout(() => setShowNotification(false), 5000);
         }, 30000);
 
+        // Inicializar Música de Fundo
+        backgroundMusicRef.current = new Audio('/background-music.mp3');
+        backgroundMusicRef.current.loop = true;
+        backgroundMusicRef.current.volume = volume;
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
             clearInterval(interval);
+            if (backgroundMusicRef.current) {
+                backgroundMusicRef.current.pause();
+                backgroundMusicRef.current = null;
+            }
         };
     }, []);
+
+    // Atualizar volume quando o estado mudar
+    useEffect(() => {
+        if (backgroundMusicRef.current) {
+            backgroundMusicRef.current.volume = isMuted ? 0 : volume;
+            if (!isMuted) {
+                backgroundMusicRef.current.play().catch(() => {
+                    console.log('Interação necessária para tocar música de fundo.');
+                });
+            } else {
+                backgroundMusicRef.current.pause();
+            }
+        }
+    }, [isMuted, volume]);
+
+    const toggleMute = () => {
+        setIsMuted(!isMuted);
+    };
 
     return (
         <div className="flex flex-col min-h-screen">
@@ -585,6 +618,42 @@ const App: React.FC = () => {
                     </a>
                 ))}
             </nav>
+
+            {/* Background Music Player */}
+            <div className="fixed top-24 right-6 md:top-32 md:right-10 z-[110] flex flex-col items-center gap-2 group">
+                <div className={`flex items-center bg-black/40 backdrop-blur-xl border border-white/10 rounded-full p-2 transition-all duration-500 ${showVolumeSlider ? 'h-40 flex-col-reverse' : 'h-12 w-12'}`}>
+                    <button
+                        onClick={toggleMute}
+                        onMouseEnter={() => setShowVolumeSlider(true)}
+                        className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors"
+                        title={isMuted ? "Ativar Som" : "Mudar"}
+                    >
+                        <span className="material-symbols-outlined text-primary text-xl">
+                            {isMuted ? 'volume_off' : volume > 0.5 ? 'volume_up' : 'volume_down'}
+                        </span>
+                    </button>
+
+                    {showVolumeSlider && (
+                        <div className="flex-grow flex flex-col items-center py-4 animate-in fade-in slide-in-from-bottom-2">
+                            <input
+                                type="range"
+                                min="0"
+                                max="1"
+                                step="0.01"
+                                value={volume}
+                                onChange={(e) => {
+                                    setVolume(parseFloat(e.target.value));
+                                    if (isMuted) setIsMuted(false);
+                                }}
+                                className="h-24 -rotate-90 origin-center accent-primary cursor-pointer w-1"
+                            />
+                        </div>
+                    )}
+                </div>
+                {!showVolumeSlider && (
+                    <span className="text-[8px] font-black uppercase tracking-widest text-primary/50 opacity-0 group-hover:opacity-100 transition-opacity">Audio</span>
+                )}
+            </div>
 
             {/* Welcome Message Overlay */}
             {showWelcome && (
