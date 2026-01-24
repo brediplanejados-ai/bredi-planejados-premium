@@ -22,13 +22,34 @@ const Logo: React.FC<{ light?: boolean, centered?: boolean }> = ({ light = false
 const App: React.FC = () => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [showNotification, setShowNotification] = useState(false);
+    const [notificationIndex, setNotificationIndex] = useState(0);
+
+    const notifications = [
+        { name: 'Juliana', detail: 'acabou de garantir sua cozinha dos sonhos.' },
+        { name: 'Marcos', detail: 'agendou uma consultoria para seu closet premium.' },
+        { name: 'Sofia', detail: 'finalizou o projeto da sua área gourmet.' },
+        { name: 'André', detail: 'realizou o sonho do seu novo home office.' },
+        { name: 'Beatriz', detail: 'fechou o projeto completo do seu novo lar.' }
+    ];
 
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 50);
         };
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+
+        // Social Proof - Mostra a cada 15 segundos, dura 5 segundos
+        const interval = setInterval(() => {
+            setNotificationIndex(prev => (prev + 1) % notifications.length);
+            setShowNotification(true);
+            setTimeout(() => setShowNotification(false), 5000);
+        }, 15000);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            clearInterval(interval);
+        };
     }, []);
 
     return (
