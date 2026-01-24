@@ -121,7 +121,7 @@ const App: React.FC = () => {
             }
 
             setTimeout(() => setShowNotification(false), 5000);
-        }, 15000);
+        }, 30000);
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
