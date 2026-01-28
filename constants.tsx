@@ -1,6 +1,21 @@
 
 import { Project, Testimonial, ProcessStep } from './types';
 
+export const CONFIG = {
+  brand: {
+    name: 'Bredi',
+    suffix: 'Planejados',
+    full: 'Bredi Planejados - Móveis Sob Medida',
+    tagline: 'Móveis sob medida para o seu ambiente',
+  },
+  contact: {
+    whatsapp: '5511000000000',
+    phoneDisplay: '(11) 0000-0000',
+    email: 'contato@brediplanejados.com.br',
+    address: 'São Paulo - SP',
+  }
+};
+
 export const COLORS = {
   primary: '#C5A059',
   dark: '#000000',

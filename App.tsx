@@ -7,8 +7,10 @@ import {
     HERO_IMAGE,
     EXCLUSIVITY_IMAGE,
     FOUNDER_IMAGE,
-    SOLUTIONS
+    SOLUTIONS,
+    CONFIG
 } from './constants';
+import ChatAssistant from './ChatAssistant';
 
 const Logo: React.FC<{ light?: boolean, centered?: boolean }> = ({ light = false, centered = false }) => (
     <a href="#inicio" className={`flex flex-col ${centered ? 'items-center' : 'items-start'} leading-tight gap-1 hover:opacity-80 transition-opacity`}>
@@ -169,6 +171,7 @@ const App: React.FC = () => {
         }
     }, [isMuted, volume]);
 
+
     const toggleMute = () => {
         setIsMuted(!isMuted);
     };
@@ -242,7 +245,7 @@ const App: React.FC = () => {
                                     onClick={playWhatsAppSound}
                                     className="h-16 md:h-20 px-8 md:px-12 bg-primary text-black rounded-xl font-black text-xs md:text-sm tracking-[0.2em] uppercase shadow-[0_20px_50px_rgba(197,160,89,0.3)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 md:gap-4"
                                 >
-                                    Solicitar Projeto 3D Grátis
+                                    Solicitar Projeto 3D
                                     <span className="material-symbols-outlined font-bold text-lg md:text-xl">arrow_forward</span>
                                 </a>
                                 <div className="flex items-center gap-4 bg-white/5 backdrop-blur-xl border border-white/10 p-5 rounded-xl group hover:bg-white/10 transition-colors cursor-default">
@@ -544,14 +547,14 @@ const App: React.FC = () => {
 
                 <div className="max-w-7xl mx-auto pt-10 border-t border-white/5 flex flex-col items-center gap-10 text-slate-500 text-[11px] font-bold uppercase tracking-[0.3em]">
                     <a
-                        href="https://wa.me/5515998148402"
+                        href={`https://wa.me/${CONFIG.contact.whatsapp}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-slate-200 hover:text-primary transition-all flex flex-col md:flex-row items-center gap-2 md:gap-3 normal-case tracking-wide py-3 px-8 bg-white/5 rounded-full border border-white/10 hover:border-primary/50 text-center order-1 md:order-2 shadow-2xl"
                     >
-                        <span>Site desenvolvido por <span className="font-black text-primary">Agência bRedi</span></span>
+                        <span>Site desenvolvido por <span className="font-black text-primary">Agência {CONFIG.brand.name}</span></span>
                         <span className="hidden md:block opacity-20">•</span>
-                        <span className="font-semibold italic">WhatsApp 15 99814-8402</span>
+                        <span className="font-semibold italic">WhatsApp {CONFIG.contact.phoneDisplay}</span>
                     </a>
 
                     <div className="flex flex-col md:flex-row items-center justify-between w-full gap-6 order-2 md:order-1">
@@ -572,7 +575,7 @@ const App: React.FC = () => {
                         <span className="material-symbols-outlined text-primary text-xl">shopping_bag</span>
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-primary">Novo Cliente bRedi</span>
+                        <span className="text-[10px] font-black uppercase tracking-widest text-primary">Novo Cliente {CONFIG.brand.name}</span>
                         <p className="text-xs font-semibold leading-snug">
                             <span className="text-black font-black uppercase">{notifications[notificationIndex].name}</span> {notifications[notificationIndex].detail}
                         </p>
@@ -580,7 +583,7 @@ const App: React.FC = () => {
                 </div>
 
                 <a
-                    href="https://wa.me/5515998148402"
+                    href={`https://wa.me/${CONFIG.contact.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={playWhatsAppSound}
@@ -666,6 +669,7 @@ const App: React.FC = () => {
                 )}
             </div>
 
+
             {/* Welcome Message Overlay */}
             {showWelcome && (
                 <div className={`fixed inset-0 z-[200] flex items-center justify-center transition-all duration-1000 ${welcomeVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'}`}>
@@ -688,6 +692,9 @@ const App: React.FC = () => {
                 </div>
             )}
 
+            {/* Intelligent Assistant */}
+            <ChatAssistant />
+
             <style>{`
                 @keyframes pulse-custom {
                     0% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(37,211,102,0.4)); }
@@ -698,6 +705,11 @@ const App: React.FC = () => {
                     from { transform: scale(1); }
                     to { transform: scale(1.15); }
                 }
+                @keyframes float {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-15px); }
+                }
+
                 .no-scrollbar::-webkit-scrollbar {
                     display: none;
                 }
