@@ -573,13 +573,18 @@ ${visitDate ? `📅 *Visita Agendada:*\n🗓️ *Data:* ${visitDate}\n⏰ *Horá
                         <span className="material-symbols-outlined text-3xl text-primary">close</span>
                     </div>
                 ) : (
-                    <div className={`relative w-full h-full flex items-center justify-center ${isGlitching ? 'robot-glitch' : ''}`}>
-                        <img
-                            src="/robot-bredi.png?v=2"
-                            alt="Assistente Robô"
-                            className="w-full h-full object-contain"
-                        />
-                    </div>
+                    <>
+                        <span className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 backdrop-blur-md text-primary text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border border-primary/30 shadow-[0_0_15px_rgba(197,160,89,0.3)] pointer-events-none">
+                            Assistente Virtual
+                        </span>
+                        <div className={`relative w-full h-full flex items-center justify-center ${isGlitching ? 'robot-glitch' : ''}`}>
+                            <img
+                                src="/robot-bredi.png?v=2"
+                                alt="Assistente Robô"
+                                className="w-full h-full object-contain"
+                            />
+                        </div>
+                    </>
                 )}
 
             </button>
