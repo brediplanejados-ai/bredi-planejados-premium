@@ -623,12 +623,15 @@ const App: React.FC = () => {
             </nav>
 
             {/* Background Music Player */}
-            <div className="fixed top-24 right-6 md:top-32 md:right-10 z-[110] flex flex-col items-center gap-2 group">
+            <div
+                className="fixed top-24 right-6 md:top-32 md:right-10 z-[110] flex flex-col items-center gap-2 group"
+                onMouseLeave={() => setShowVolumeSlider(false)}
+            >
                 <div className={`flex items-center bg-black/40 backdrop-blur-xl border border-white/10 rounded-full p-2 transition-all duration-500 ${showVolumeSlider ? 'h-40 flex-col-reverse' : 'h-12 w-12'}`}>
                     <button
                         onClick={toggleMute}
                         onMouseEnter={() => setShowVolumeSlider(true)}
-                        className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors"
+                        className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors shrink-0 z-10"
                         title={isMuted ? "Ativar Som" : "Mudar"}
                     >
                         <span className="material-symbols-outlined text-primary text-xl">
@@ -637,7 +640,7 @@ const App: React.FC = () => {
                     </button>
 
                     {showVolumeSlider && (
-                        <div className="flex-grow flex flex-col items-center py-4 animate-in fade-in slide-in-from-bottom-2">
+                        <div className="flex-grow flex flex-col items-center justify-center py-4 animate-in fade-in slide-in-from-bottom-2 w-full h-full relative">
                             <input
                                 type="range"
                                 min="0"
@@ -648,7 +651,7 @@ const App: React.FC = () => {
                                     setVolume(parseFloat(e.target.value));
                                     if (isMuted) setIsMuted(false);
                                 }}
-                                className="h-24 -rotate-90 origin-center accent-primary cursor-pointer w-1"
+                                className="w-24 h-1 -rotate-90 origin-center accent-primary cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                             />
                         </div>
                     )}
