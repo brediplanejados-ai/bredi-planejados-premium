@@ -566,7 +566,7 @@ ${visitDate ? `📅 *Visita Agendada:*\n🗓️ *Data:* ${visitDate}\n⏰ *Horá
             {/* FAB Trigger */}
             <button
                 onClick={triggerClickEffect}
-                className={`fixed bottom-24 right-32 md:bottom-10 md:right-36 z-[120] w-20 h-20 flex items-center justify-center hover:scale-110 active:scale-95 transition-all group ${!isOpen ? 'robot-float' : ''}`}
+                className={`fixed bottom-24 right-6 md:bottom-10 md:right-10 z-[120] w-20 h-20 flex items-center justify-center hover:scale-110 active:scale-95 transition-all group ${!isOpen ? 'robot-float' : ''}`}
             >
                 {isOpen ? (
                     <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-primary/30">
