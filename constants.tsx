@@ -76,7 +76,7 @@ export const PROCESS_STEPS: ProcessStep[] = [
 export const HERO_IMAGE = 'https://lh3.googleusercontent.com/aida-public/AB6AXuB5aQI8bjJvtJq2cBq12hsLZ2Qsq4eCtsRPtzwPfsLm4NkeKt7zvDmZMgWORPM_vrp7IphxSO05P35tHObT7roia1hJVCOd3G1CZIW_r-1Tk13NU4lSbz0TON2lwEwLDFhds3t09QMSt-i7tUijmK1kciE5oA-qVXE-OMe-MTzS6Vpn-8Cs5RVscoMe4IcJZbVhzpHhb8KgalNMGlBgTkdJdTiA5kHMMwbip1seJW9FFIIixvVq_VMHbns3gkWnUFpoq24cvbbR3OZr';
 
 export const EXCLUSIVITY_IMAGE = 'https://lh3.googleusercontent.com/aida-public/AB6AXuAjVgPyVJLjcwKKwblkYWaZQMvVkhav2y-XxJRJ5-oN45BXjiMJz7tck85BEsYopf7RoksP30YjhK26VbOstasNaUabBEVIxNSlk4mwNOB9d1-_9xcoMS9UOQHetZ3mNRJpX8rmoF4XSCh-7mumV0JLdKJf9FBehwQR6FWgsdXSK7noAxuo0SOmxShWya8a0wXY_jZF4Hmbh2gWw_c4suHiTpZIe_meJOOFjepC0l6RJ0ZvDtFz1LgnY9SKMJbjztb8SWwlTPQbhuFy';
-export const FOUNDER_IMAGE = '/founder.png';
+export const FOUNDER_IMAGE = '/founder-perfil.png';
 
 export const SOLUTIONS = [
   { title: 'Cozinhas', subtitle: 'Funcionalidade Gourmet', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBrNHO9sFQWZHDFMPY3KDb5Bmygw54bMG1tgiYPP_ehrZC-ytc75uwPTY8YxMDERbkycm6_KMIVRXZa_9Mvnf48LEq7f6PR8rRvVSMzOzDBIepkVQt7i4HXd011BQZogLCqfc0jm0aQ7CTTXK4k199qSK9yE8Cff50CTJg_scFzjCsfAGIZ7dAVPhWBxfjhVKaU7oxq1rBdiMG5D65ODghF3_MSsVjVS5ZcqTPUVXKvFotgvOP6fqA-DMu6nPzivMof4ZgMVBlG3aiQ' },

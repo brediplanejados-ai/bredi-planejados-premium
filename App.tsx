@@ -547,14 +547,21 @@ const App: React.FC = () => {
 
                 <div className="max-w-7xl mx-auto pt-10 border-t border-white/5 flex flex-col items-center gap-10 text-slate-500 text-[11px] font-bold uppercase tracking-[0.3em]">
                     <a
-                        href={`https://wa.me/${CONFIG.contact.whatsapp}`}
+                        href="https://wa.me/5515998148402"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-slate-200 hover:text-primary transition-all flex flex-col md:flex-row items-center gap-2 md:gap-3 normal-case tracking-wide py-3 px-8 bg-white/5 rounded-full border border-white/10 hover:border-primary/50 text-center order-1 md:order-2 shadow-2xl"
+                        className="text-slate-200 hover:text-primary transition-all flex flex-col md:flex-row items-center gap-3 normal-case tracking-wide py-3 px-8 bg-white/5 rounded-full border border-white/10 hover:border-primary/50 text-center order-1 md:order-2 shadow-2xl"
                     >
-                        <span>Site desenvolvido por <span className="font-black text-primary">Agência {CONFIG.brand.name}</span></span>
+                        <span className="flex items-center gap-2">
+                            <span>Site desenvolvido por</span>
+                            <span className="flex items-center font-black tracking-tighter text-base">
+                                <span className="text-white">b</span>
+                                <span className="text-[#0051FF]">R</span>
+                                <span className="text-[#FF0000]">edi</span>
+                            </span>
+                        </span>
                         <span className="hidden md:block opacity-20">•</span>
-                        <span className="font-semibold italic">WhatsApp {CONFIG.contact.phoneDisplay}</span>
+                        <span className="text-primary font-bold">(15) 99814-8402</span>
                     </a>
 
                     <div className="flex flex-col md:flex-row items-center justify-between w-full gap-6 order-2 md:order-1">
