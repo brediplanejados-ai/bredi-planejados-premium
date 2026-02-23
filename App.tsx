@@ -433,7 +433,7 @@ const App: React.FC = () => {
                                     <img
                                         src={FOUNDER_IMAGE}
                                         alt="Liderança bRedi"
-                                        className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-105 hover:scale-100"
+                                        className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-1000 scale-105 hover:scale-100"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
                                 </div>
