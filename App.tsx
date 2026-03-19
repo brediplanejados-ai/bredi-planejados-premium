@@ -492,7 +492,7 @@ const App: React.FC = () => {
                         <div className="flex flex-col gap-6 text-slate-300">
                             <div className="flex items-start gap-4">
                                 <span className="material-symbols-outlined text-primary">location_on</span>
-                                <span className="font-light">Benedito Camargo Margarido, 230<br />Jardim Grajaú – Itapeva, SP</span>
+                                <span className="font-light">Benedito Camargo Margarido<br />Jardim Grajaú – Itapeva, SP</span>
                             </div>
                             <div className="flex items-center gap-4">
                                 <span className="material-symbols-outlined text-primary">phone_in_talk</span>
